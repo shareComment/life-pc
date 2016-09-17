@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>自由生活</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/css/signup.css}" />
+	</head>
+	<body>
+		<div th:include="common/header :: header(user=${session.user_resource})"></div>
+		<div class="container">
+			<div class="col-lg-5 col-center-block">
+				<form class="form-horizontal" role="form" method='post' action="/signup">
+					<legend>
+						<span>用户注册</span>
+						<span class="pull-right">已有账户，<a href="/signin" style="color:#EEB241">登录</a></span>
+					</legend>
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"><img th:src="@{/images/reg/reg_tel.png}" /></span>
+							<input type="text" name="telephone" id="telephone" class="form-control input-lg" placeholder="请输入手机号" required="required" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"><img th:src="@{/images/reg/reg_tel.png}" /></span>
+		  					<input type="text" class="form-control input-lg" name="salt" id="salt" placeholder="请输入短信验证码" required="required" />
+		  					<span class="input-group-btn">
+		    					<button class="btn btn-primary btn-lg" type="button" id="getCode">获取短信验证码</button>
+		  					</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"><img th:src="@{/images/reg/reg_pass.png}" /></span>
+							<input type="password" name="password" id="password" class="form-control input-lg" placeholder="请输入密码" required="required" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"><img th:src="@{/images/reg/reg_pass.png}" /></span>
+							<input type="password" name="password_" id="password_" class="form-control input-lg" placeholder="请再次输入密码" required="required" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"><img th:src="@{/images/reg/user.png}" /></span>
+							<input type="text" name="lnvite_code" id="lnvite_code" class="form-control input-lg" th:value="${lnvite_code}" placeholder="请输入邀请者手机号(没有可不填写)" required="required" />
+						</div>
+					</div>
+					<!-- <div class="checkbox">
+				    	<label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				      		<input type="checkbox" name="chk" id="chk" required="required" />我已阅读并同意<a href="">《无锡自由生活协议条款》</a>
+				      	</label>
+				   	</div> -->
+				   	<p></p>
+					<div>
+						<input type='submit' id='submit' class='btn btn-primary input-lg btn-block' value='注册' />
+					</div>
+				</form>
+			</div>
+		</div>
+		<div th:include="common/footer :: footer"></div>
+		<script th:src="@{/js/jquery.min.js}"></script>
+		<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+		<script th:src="@{/js/common.js}"></script>
+		<script th:src="@{/js/signup.js}"></script>
+	</body>
+</html>

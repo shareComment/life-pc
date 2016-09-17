@@ -1,0 +1,20 @@
+body {
+	padding-top: 100px;
+}
+.brand-left-up {
+	background-color: #FFFFFF;
+}
+.brand-left-down {
+	background-color: #FFFFFF;
+}
+.brand-right {
+	padding-top:23px;
+	background-color: #FFFFFF;
+}
+.brand-btns {
+	margin-top: 8px;
+	margin-right: 10px;
+}
+.tab-pane {
+	padding: 10px 20px 0px 20px;
+}

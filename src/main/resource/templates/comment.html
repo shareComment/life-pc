@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>自由生活-评价详情页</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	    <link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/css/comment.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/vendor/lightbox/css/ekko-lightbox.min.css}" />
+	</head>
+	<body>
+		<input type="hidden" th:value="${comment.comment_id}" id="comment_id" />
+		<input type="hidden" th:value="${brand_info.brand_id}" id="brand_id" />
+		<div th:include="common/header :: header(user=${session.user_resource})"></div>
+		<div class="container">
+			<ol class="breadcrumb">
+				<li>全部品牌 > <span th:text="${comment.brand_name}"></span></li>
+			</ol>
+			<div class="comment-left col-lg-8">
+	  			<div class="media">
+					<a class="pull-left" href="#">
+						<img class="media-object" th:src="${comment.avatar}" onerror="this.src='/images/comment/user_.png'" width="89px" height="89px" alt="用户头像" />
+					</a>
+					<div class="media-body">
+						<h5 class="media-heading"><span th:text="${comment.nickname}"></span>&nbsp;&nbsp;<span th:text="${comment.grade_Name}" th:style="${'color'+comment.grade_Color}"></span>&nbsp;&nbsp;评论了&nbsp;&nbsp;<span th:text="${comment.brand_name}"></span></h5>
+						<h6 class="media-heading"><span th:text="${comment.add_time}"></span></h6>
+						<h6>
+							<span th:text="${comment.comment}"></span>
+						</h6>
+					</div>
+				</div>
+				<div class="text-center"><button type="button" class="btn btn-primary btn-circle" id="zan">赞<br/><span th:text="${comment.zan}" id="zanCount"></span></button></div>
+				<p></p>
+				<div>
+					<div class="input-group">
+						<span class="input-group-addon"><img alt="" th:src="@{/images/comment/comment_01.png}" /></span>
+					  	<input type="text" class="form-control" name="reply_content" id="reply_content" th:readonly="${session.user != null ? 'false' : 'true'}" />
+					  	<span class="input-group-addon"><button th:class="${session.user != null ? 'btn btn-primary' : 'btn btn-primary disabled'}" th:disabled="${session.user != null ? 'false' : 'true'}" id="saveReply" type="button">回复</button></span>
+					</div>
+				</div>
+				<div>
+					&nbsp;&nbsp;&nbsp;&nbsp;<img alt="" th:src="@{/images/comment/comment_02.png}" />&nbsp;&nbsp;共<span th:text="${comment.isComment}"></span>条回复
+				</div>
+				<hr/>
+				<div id="replyList">
+				</div>
+			</div>
+			<div class="comment-right col-lg-4">
+				<p><h4><span th:text="${brand_info.brand_name}"></span></h4></p>
+				<div id="indicatorContainer"></div>
+				<p>
+					<div>
+						<span>
+							<strong>品牌标签：</strong>
+							<span class="label label-primary" th:each="tag,tagStat : ${tag_info}"> 
+								<span th:text="${tag.tag_name}"></span>
+							</span>
+						</span>
+					</div>
+				</p>
+				<p class="text-center">
+					<a th:class="${session.user != null ? 'btn btn-primary' : 'btn btn-primary disabled'}" th:href="${session.user != null ? '/brand/vioce/'+brand_info.brand_id : 'javascript:void(0)'}" role="button">我要点评</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a class="btn btn-primary" th:href="${brand_info.official_website}" role="button" target="_blank">官网购物</a>
+				</p>
+				<hr/>
+				<p><strong>最新点评</strong></p>
+				<span th:each="cr,crStat : ${comment_recent}">
+					<div class="row">
+						<div class="col-sm-3"><img src="/images/comment/user.png" />&nbsp;&nbsp;&nbsp;<span th:text="${cr.grade_Name}" th:style="${'color:'+cr.grade_Color}"></span></div>
+						<div class="col-sm-8 well well-sm">
+							<span th:text="${cr.nickname}"></span><span class="pull-right" th:text="${cr.brand_name}"></span><br/>
+							<span th:text="${cr.comment}"></span>
+						</div>
+					</div>
+				</span>
+			</div>
+		</div>
+		<div class="col-lg-offset-10 navbar-fixed-bottom">
+			<div th:include="common/side :: side"></div>
+		</div>
+		<div th:include="common/footer :: footer"></div>
+		<script th:src="@{/js/jquery.min.js}"></script>
+		<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+		<script th:src="@{/vendor/radialindicator/js/radialIndicator.min.js}"></script>
+		<script th:src="@{/vendor/paginator/js/bootstrap-paginator.min.js}"></script>
+		<script th:src="@{/js/common.js}"></script>
+		<script th:src="@{/js/comment.js}"></script>
+		<script th:src="@{/vendor/lightbox/js/ekko-lightbox.min.js}"></script>
+		<script th:inline="javascript">
+			var radialObj = radialIndicator('#indicatorContainer', {barColor: '#87CEEB',
+		        barWidth: 10,
+		        roundCorner : true,
+		        percentage: true}).animate(/*[[${brand_info.score}]]*/);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Error Pages</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+    <!-- <p th:text="'Url:' + ${URL}" />
+    <p th:text="'Error:' + ${error}" />
+    <p th:text="'Status:' + ${status}" />
+    <p th:text="'Timestamp:' + ${timestamp}" /> -->
+    <div class="container jumbotron">
+		<h2>啊哦~出错了！</h2>
+	  	<p>是不是还没<a href="/signin">登录</a>？请稍后再试，或者返回首页.....</p>
+	  	<p><a class="btn btn-primary btn-lg" href="/">跳转到首页</a></p>
+	</div>
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/common.js}"></script>
+</body>
+</html>

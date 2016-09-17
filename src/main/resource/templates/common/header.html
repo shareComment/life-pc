@@ -1,0 +1,71 @@
+<div th:fragment="header(user)">
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">Brand</a>
+			</div>
+			<div class="collapse navbar-collapse navbar-collapse-example">
+				<ul class="nav navbar-nav">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">全部品牌<b class="caret"></b></a>
+						<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+		                	<li class="dropdown-submenu rootmenu" th:each="topCate,topCateStat : ${session.topCateList}">
+			                    <a tabindex="-1" href="javascript:void(0);" class="top" th:id="${topCate.cate_id}"><span th:text="${topCate.cate_name}"></span></a>
+			                    <ul class="dropdown-menu secmenu"></ul>
+			                </li>
+			            </ul>
+					</li>
+					<li><a href="/">首页</a></li>
+				</ul>
+				<span th:if="${session.user == null}">
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<form class="navbar-form navbar-left" role="search" action="/srh" method="post">
+						    	<div class="form-group">
+						    		<div class="input-group">
+										<span class="input-group-addon"><img th:src="@{/images/search.png}" /></span>
+						        		<input type="text" class="form-control" size="20" name="brand_name" placeholder="请输入品牌名称或商品名称" style="width: 205px;" />
+						        	</div>
+						      	</div>
+						    </form>
+					    </li>
+				    	<li><a href="/signup">注册</a></li>
+				    	<li><a href="/signin">登录</a></li>
+				    </ul>
+			    </span>
+			    <span th:if="${session.user != null}">
+			    	<ul class="nav navbar-nav navbar-right">
+						<li>
+							<form class="navbar-form navbar-left" role="search" action="/srh" method="post">
+						    	<div class="form-group">
+						    		<div class="input-group">
+										<span class="input-group-addon"><img th:src="@{/images/search.png}" /></span>
+						        		<input type="text" class="form-control" name="brand_name" placeholder="请输入品牌名称或商品名称" />
+						        	</div>
+						      	</div>
+						    </form>
+					    </li>
+					    <li>
+					    	<a href=""><img alt="系统消息" th:src="@{/images/sysmsg.png}" /></a>
+					    </li>
+					    <li>
+					    	<a href=""><img alt="" th:href="@{/person}" th:src="${session.user.avatar}" onerror="this.src='/images/user.png'" width="32px" height="32px" /></a>
+					    </li>
+					    <li class="dropdown">
+					    	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+						    	<span th:text="${session.user.nickname}"></span>&nbsp;
+						    	<span th:text="${session.user.grade_Name}" th:style="'color'+${session.user.grade_Color}"></span>
+						    	<b class="caret"></b>
+					    	</a>
+					    	<ul class="dropdown-menu" role="menu">
+					      		<li><a th:href="@{/person}">我的收益</a></li>
+					      		<li><a th:href="@{/person}">个人中心</a></li>
+					      		<li><a th:href="@{/sys/logout}">退出登录</a></li>
+					   		</ul>
+					    </li>
+				    </ul>
+			    </span>
+			</div>
+		</div>
+	</nav>
+</div>

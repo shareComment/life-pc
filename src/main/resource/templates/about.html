@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>自由生活-关于我们</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	    <link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/css/about.css}" />
+   	</head>
+   	<body>
+	   	<div th:include="common/header :: header(user=${session.user_resource})"></div>
+		<div class="container">
+			<div class="col-lg-12 col-center-block">
+				<p><h4>关于我们</h4></p>
+				<p>
+					自由生活，属于我们每个人的生活！
+				</p>
+				<p>
+					无锡自由生活信息技术有限公司，成立于2016年4月，透过广大消费者点评与消费体验分享，还原最真实的品牌企业，帮助更多的消费者解决消费盲区，找到品质、诚信的品牌企业。
+				</p>
+				<p>
+					中国乃至世界都经历了物质文明的高速发展，而未来则是精神文明高速发展并于物质文明接轨的时代，我们透过互联网平台，依托诚信信息系统，通过以消费者为主的理念携手企业，在规范化、制度化、标准化的系统机制中共同建立健康经济生态圈，未来每个消费者都将是自己的主人，主宰着属于自己的自由生活。(只要您诚信于每一次点评，您将成为自由生活的主人；只要您认真于每一件商品的制造，您将拥有世界的消费者)
+				</p>
+				<p>
+					企业愿景：让世界更美好！(让创造与体验更完美的融合)<br/>
+					企业核心价值观：帮助企业与消费者创造价值。<br/>
+					企业使命(精神)：诚信、品质、自由、仁爱
+				</p>
+				<p>
+					<strong>
+					企业地址：无锡市惠山区前洲街道中惠大道1588号70号楼6号<br/>
+					联系方式：15995282479(陈先生)
+					</strong>
+				</p>
+			</div>
+		</div>
+		<div th:include="common/footer :: footer"></div>
+		<script th:src="@{/js/jquery.min.js}"></script>
+		<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+		<script th:src="@{/js/common.js}"></script>
+	</body>
+</html>

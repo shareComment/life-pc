@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>自由生活-点评页</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	    <link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/vendor/starrating/css/star-rating.min.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/vendor/webuploader/webuploader.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/vendor/webuploader/style.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/css/vioce.css}" />
+	</head>
+	<body>
+		<div th:include="common/header :: header(user=${session.user_resource})"></div>
+		<div class="container">
+			<ol class="breadcrumb">
+				<li>全部品牌 > <span th:text="${brand_info.brand_name}"></span> > 我要点评</li>
+			</ol>
+			<div class="vioce-left col-lg-8">
+				<div class="brand-name"><span><h3><span th:text="${brand_info.brand_name}"></span></h3></span></div>
+				<form class="form-horizontal" role="form" id="vioceForm">
+					<input type="hidden" th:value="${brand_info.brand_id}" id="brand_id" />
+					<div class="form-group">
+						<label for="score" class="col-sm-2 control-label">打分</label>
+						<div class="col-sm-8">
+							<input id="score" name="score" class="rating rating-loading" data-min="0" value="5" data-max="5" data-step="0.1" data-show-clear="false" data-show-caption="false" data-size="xs" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="comment" class="col-sm-2 control-label">评论</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" rows="4" id="comment" name="comment" placeholder="您的经验很有价值，将会成为他人的参考~"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="img" class="col-sm-2 control-label">有图有真相</label>
+					</div>
+					<div class="form-group">
+						<input type="hidden" class="imgurl" /><!-- 第一张图 -->
+						<input type="hidden" class="imgurl" />
+						<input type="hidden" class="imgurl" />
+						<div id="wrapper">
+					        <div id="container">
+					            <!--头部，相册选择和格式选择-->
+					
+					            <div id="uploader">
+					                <div class="queueList">
+					                    <div id="dndArea" class="placeholder">
+					                        <div id="filePicker"></div>
+					                        <p>或将照片拖到这里，最多可上传3张</p>
+					                    </div>
+					                </div>
+					                <div class="statusBar" style="display:none;">
+					                    <div class="progress">
+					                        <span class="text">0%</span>
+					                        <span class="percentage"></span>
+					                    </div><div class="info"></div>
+					                    <div class="btns">
+					                        <div id="filePicker2"></div><div class="uploadBtn">开始上传</div>
+					                    </div>
+					                </div>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+					<a class="btn btn-primary col-sm-offset-2" role="button" id="commentBtn">发布</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a class="btn btn-default" role="button">取消</a>
+				</form>
+			</div>
+			<div class="vioce-right col-lg-4">
+			</div>
+		</div>
+		<div th:include="common/footer :: footer"></div>
+		<script th:src="@{/js/jquery.min.js}"></script>
+		<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+		<script th:src="@{/vendor/validation/jqBootstrapValidation.min.js}"></script>
+		<script th:src="@{/vendor/starrating/js/star-rating.min.js}"></script>
+		<script th:src="@{/vendor/webuploader/webuploader.js}"></script>
+		<script th:src="@{/vendor/webuploader/upload.js}"></script>
+		<script th:src="@{/js/common.js}"></script>
+		<script th:src="@{/js/vioce.js}"></script>
+	</body>
+</html>

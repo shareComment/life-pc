@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>自由生活</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	    <link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/css/person.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/css/auth.css}" />
+   	</head>
+   	<body>
+   		<div class="panel panel-default">
+			<div class="panel-body">
+		    	身份认证
+			</div>
+			<hr/>
+			<div class="well well-sm">
+				<p class="text-warning text-left">您的个人信息不会透露给第三方，请放心填写。</p>
+			</div>
+			<div>
+				<form class="form-horizontal col-sm-offset-2" role="form">
+					<span th:if="${authInfo.verified == '0'}">
+						<div class="alert alert-dismissible alert-success">
+	  						<button type="button" class="close" data-dismiss="alert">&times;</button>
+	  						<p>恭喜您已通过身份认证！</p>
+						</div>
+					</span>
+					<span th:if="${authInfo.verified == '2'}">
+						<div class="alert alert-dismissible alert-danger">
+	  						<button type="button" class="close" data-dismiss="alert">&times;</button>
+	  						<p>身份认证失败，请重新申请！</p>
+						</div>
+					</span>
+					<input type="hidden" id="file_img_a_" />
+   					<input type="hidden" id="file_img_b_" />
+					<div class="form-group form-group-lg">
+						<label for="username" class="col-sm-5">姓名*</label>
+						<label for="idcard" class="col-sm-5">身份证号码*</label>
+					</div>
+					<div class="form-group form-group-lg">
+						<div class="col-sm-5">
+							<input type="text" name="username" id="username" th:value="${authInfo.username == '' ? '' : authInfo.username}" th:disabled="${authInfo.verified == '0' ?  'true' : 'false'}" class="form-control pull-right" placeholder="请输入您的真实姓名" />
+						</div>
+						<div class="col-sm-5">
+							<input type="text" name="idcard" id="idcard" th:value="${authInfo.idcard == '' ? '' : authInfo.idcard}" th:disabled="${authInfo.verified == '0' ?  'true' : 'false'}" class="form-control pull-left" placeholder="15-18位" />
+						</div>
+					</div>
+					<div class="form-group form-group-lg">
+						<label for="img" class="col-sm-5">上传证件资料*</label>
+					</div>
+					<div class="form-group form-group-lg">
+						<div class="col-sm-4 thumbnail">
+							<img th:src="${authInfo.img_a == null ? '/images/auth/auth.png' : authInfo.img_a}" class="img-rounded" alt="手持身份证正面" id="img_a" name="img_a" />
+							<div style="display:none"><input type="file" id="file_img_a" name="file" th:disabled="${authInfo.verified == '0' ?  'true' : 'false'}" /></div>
+							<div class="caption text-center"><p>手持身份证正面</p></div>
+						</div>
+						<div class="col-sm-offset-1 col-sm-4 thumbnail">
+							<img th:src="${authInfo.img_b == null ? '/images/auth/auth.png' : authInfo.img_b}" class="img-rounded" alt="手持身份证背面" id="img_b" name="img_b"/>
+							<div style="display:none"><input type="file" id="file_img_b" th:disabled="${authInfo.verified == '0' ?  'true' : 'false'}" name="file" /></div>
+							<div class="caption text-center"><p>手持身份证背面</p></div>
+						</div>
+					</div>
+					<div class="form-group form-group-lg">
+						<div class="col-sm-8">
+							<button type="button" class="btn btn-primary btn-lg btn-block" id="saveAuth" th:disabled="${authInfo.verified == '0' ?  'true' : 'false'}">提交审核</button>
+						</div>
+					</div>
+					<p></p>
+				</form>
+			</div>
+			<div class="well well-sm">
+				<p class="text-primary text-left">请注意，以下为常见认证失败原因：</p>
+				<ol>
+  					<li>身份证文字模糊，无法辨认；</li>
+  					<li>身份证号码或文字有遮挡；</li>
+  					<li>身份证照片使用自拍，左右颠倒；</li>
+  					<li>身份证正面照未包含本人的正面照。</li>
+				</ol>
+			</div>
+		</div>
+   		<script th:src="@{/js/jquery.min.js}"></script>
+		<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+		<script th:src="@{/js/common.js}"></script>
+		<script th:src="@{/js/ajaxfileupload.js}"></script>
+		<script th:src="@{/js/auth.js}"></script>
+   	</body>
+</html>

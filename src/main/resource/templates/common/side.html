@@ -1,0 +1,58 @@
+<div th:fragment="side">
+	<ul class="fix-menu list-unstyled">
+		<li>
+			<a href="#" onclick="return false;" class="item fixed-menu-feed">
+				<img th:src="@{/images/feed.png}" />
+			</a>
+		</li>
+		<div id="popover-qrcode" class="hide">
+			<img src="/getQ" />
+		</div>
+		<li>
+			<a href="#" onclick="return false;" id="qrcode" class="item fixed-menu-qrcode" role="button" >
+				<img th:src="@{/images/qrcode.png}" />
+			</a>
+		</li>
+		<div id="popover-share" class="hide">
+			<div class="input-group">
+		  		<input type="text" class="form-control sm" id="shareUrl" th:value="${session.shareHref}" aria-describedby="basic-addon"/>
+		  		<span class="input-group-addon" id="basic-addon"><span class="glyphicon glyphicon-copy" id="copyClip" role="button"></span></span>
+			</div>
+		</div>
+		<li>
+			<a href="#" onclick="return false;" id="share" class="item fixed-menu-share" role="button" >
+				<img th:src="@{/images/share.png}" />
+			</a>
+		</li>
+		<li>
+			<a href="#" class="item fixed-menu-backtop">
+				<img th:src="@{/images/backtop.png}" />
+			</a>
+		</li>
+	</ul>
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/common.js}"></script>
+	<script th:src="@{/js/side.js}"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('#qrcode').popover({
+			html: true,
+			trigger: "focus",
+			placement: "left",
+			content: function() {
+				return $('#popover-qrcode').html();
+			}
+		});
+		$('#share').popover({
+			html: true,
+			trigger: "focus",
+			placement: "left",
+			delay: {hide: 5000},
+			content: function() {
+				return $('#popover-share').html();
+			}
+		});
+	});
+	</script>
+</div>

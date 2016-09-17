@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>自由生活</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	    <link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/css/person.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/css/profile.css}" />
+   	</head>
+   	<body>
+   		<input type="hidden" th:value="${profile.province}" id="pro-prov" />
+   		<input type="hidden" th:value="${profile.city}" id="pro-city" />
+   		<input type="hidden" th:value="${profile.district}" id="pro-dist" />
+   		<input type="hidden" th:value="${profile.avatar}" id="avatar-src" />
+   		<div class="panel panel-default">
+			<div class="panel-body">
+		    	个人资料
+				<hr/>
+				<div class="text-center col-sm-offset-5" id="indicatorContainerWrap">
+					<img th:src="${profile.avatar}" onerror="this.src='/images/profile/user_.png'" width="89px" height="89px" class="img-circle" id="filePicker" />
+					<input type="file" id="avatarFileSelector" name="file" />
+				</div><p></p>
+				<form class="form-horizontal text-center">
+					<div class="form-group">
+						<label for="telephone" class="col-sm-4 control-label">账号</label>
+						<div class="col-sm-6">
+							<input type="text" name="telephone" id="telephone" class="form-control" readonly="readonly" value="18505107840" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="nickname" class="col-sm-4 control-label">昵称</label>
+						<div class="col-sm-6">
+							<input type="text" name="nickname" id="nickname" class="form-control" placeholder="请填写昵称" th:value="${profile.nickname}"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="gender" class="col-sm-4 control-label">性别</label>
+						<div class="col-sm-3 row">
+							<div class="radio pull-left">
+		          				<label>&nbsp;&nbsp;&nbsp;
+		            				<input name="gender" id="optionsRadios1" value="1" checked="" type="radio" />
+		            					男
+		          				</label>
+		        			</div>
+		        			<div class="radio pull-right">
+		          				<label>
+		            				<input name="gender" id="optionsRadios2" value="0" type="radio" />
+		            					女
+		          				</label>
+		        			</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="age" class="col-sm-4 control-label">年龄</label>
+						<div class="col-sm-6">
+							<input type="text" name="age" id="age" class="form-control" placeholder="请填写真实年龄" th:value="${profile.age}" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="education" class="col-sm-4 control-label">学历</label>
+						<div class="col-sm-6">
+							<input type="text" name="education" id="education" class="form-control" placeholder="请填写最高学历" th:value="${profile.education}" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="collage" class="col-sm-4 control-label">毕业院校</label>
+						<div class="col-sm-6">
+							<input type="text" name="collage" id="collage" class="form-control" placeholder="请填写真实院校" th:value="${profile.collage}" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="email" class="col-sm-4 control-label"><span style="color:red">*</span>邮箱</label>
+						<div class="col-sm-6">
+							<input type="text" name="mail" id="email" class="form-control" placeholder="请填写邮箱地址" th:value="${profile.email}" required="required" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="address" class="col-sm-4 control-label">所在地区</label>
+						<div class="col-sm-6" id="city">
+							<select class="form-control prov" id="select-prov">
+						    </select>
+						    <select class="form-control city" id="select-city">
+						    </select>
+						    <select class="form-control dist" id="select-dist">
+						    </select>
+						</div>
+					</div>
+					<button type="button" class="btn btn-primary btn-lg btn-block" id="saveProfile">保存修改</button>
+				</form>
+			</div>
+		</div>
+   		<script th:src="@{/js/jquery.min.js}"></script>
+		<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+		<script th:src="@{/vendor/validation/jqBootstrapValidation.min.js}"></script>
+		<script th:src="@{/vendor/region/jquery.cityselect.js}"></script>
+		<script th:src="@{/js/ajaxfileupload.js}"></script>
+		<script th:src="@{/js/common.js}"></script>
+		<script th:src="@{/js/profile.js}"></script>
+   	</body>
+</html>

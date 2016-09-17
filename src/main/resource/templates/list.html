@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>自由生活-品牌列表页</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	    <link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/css/list.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/vendor/starrating/css/star-rating.css}" />
+	</head>
+	<body>
+		<div th:include="common/header :: header(user=${session.user_resource})"></div>
+		<div class="container">
+			<ol class="breadcrumb">
+				<li>全部品牌 > 关键字</li>
+			</ol>
+			<div>
+				<ul class="brand_list list-group list-inline">
+					<span th:each="brand,brandStat : ${brandList}">
+						<span th:if="${brandStat.index+1}%5 == 0">
+							<li class="list-group-item side">
+								<div>
+									<p>NO.<span th:text="${brandStat.index+1}"></span></p>
+									<h4><span th:text="${brand.brand_name}"></span></h4>
+		                 			<p class="input-group">
+						  				<input id="score" name="score" class="score rating-loading form-control" th:value="${brand.score}" data-size="xs" />
+						  				<span class="input-group-addon"><em><span th:text="${brand.score == '' ? '0' : brand.score}"></span>%</em>消费口碑</span>
+									</p>
+									<p><a class="btn btn-default" th:href="${'/brand/'+brand.brand_id}" role="button">我要点评</a><a class="btn btn-primary pull-right" th:href="${brand.official_website}" role="button" target="_blank">官网购物</a></p>
+									<h6><span th:text="${brand.commentNum == '' ? '0' : brand.commentNum}"></span> 条评论</h6>
+								</div>
+							</li>
+						</span>
+						<span th:if="${brandStat.index+1}%5 != 0">
+							<li class="list-group-item">
+								<div>
+									<p>NO.<span th:text="${brandStat.index+1}"></span></p>
+									<h4><span th:text="${brand.brand_name}"></span></h4>
+		                 			<p class="input-group">
+						  				<input id="score" name="score" class="score rating-loading form-control" th:value="${brand.score/20}" data-size="xs" />
+						  				<span class="input-group-addon"><em><span th:text="${brand.score == '' ? '0' : brand.score}"></span>%</em>消费口碑</span>
+									</p>
+									<p><a class="btn btn-default" th:href="${'/brand/'+brand.brand_id}" role="button">我要点评</a><a class="btn btn-primary pull-right" th:href="${brand.official_website}" role="button" target="_blank">官网购物</a></p>
+									<h6><span th:text="${brand.commentNum == '' ? '0' : brand.commentNum}"></span> 条评论</h6>
+								</div>
+							</li>
+						</span>
+					</span>
+				</ul>
+			</div>
+			<span th:if="${totalPages} gt '1'">
+				<div class="pull-right">
+					<ul id="list-paginator">
+					</ul>
+				</div>
+			</span>
+		</div>
+		<div class="col-lg-offset-10 navbar-fixed-bottom">
+			<div th:include="common/side :: side"></div>
+		</div>
+		<div th:include="common/footer :: footer"></div>
+		<script th:src="@{/js/jquery.min.js}"></script>
+		<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+		<script th:src="@{/vendor/starrating/js/star-rating.min.js}"></script>
+		<script th:src="@{/vendor/paginator/js/bootstrap-paginator.min.js}"></script>
+		<script th:src="@{/js/common.js}"></script>
+		<script th:src="@{/js/list.js}"></script>
+		<script th:inline="javascript">
+			var options = {
+	            currentPage: /*[[${currentPage}]]*/,
+	            totalPages: /*[[${totalPages}]]*/,
+	            bootstrapMajorVersion: 3,
+	            pageUrl: function(type, page, current){
+	            	return "/srh/"+page;
+	            }
+	        }
+			$('#list-paginator').bootstrapPaginator(options);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>自由生活</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	    <link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/css/remark.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/vendor/starrating/css/star-rating.css}" />
+   	</head>
+   	<body>
+   		<div class="panel panel-default">
+			<div class="panel-body">
+		    	我的点评
+			</div>
+			<hr/>
+			<div>
+				<div class="list-group" id="remarkList">
+				</div>
+			</div>
+		</div>
+		<script th:src="@{/js/jquery.min.js}"></script>
+		<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+		<script th:src="@{/vendor/starrating/js/star-rating.min.js}"></script>
+		<script th:src="@{/vendor/paginator/js/bootstrap-paginator.min.js}"></script>
+		<script th:src="@{/js/common.js}"></script>
+		<script th:src="@{/js/remark.js}"></script>
+	</body>
+</html>

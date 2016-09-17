@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>自由生活</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	    <link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/css/person.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/css/reply.css}" />
+   	</head>
+   	<body>
+   		<div class="panel panel-default">
+			<div class="panel-body">
+		    	回复信息
+			</div>
+			<hr/>
+			<div>
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#myReply" data-toggle="tab" aria-expanded="true" id="mr">我的回复</a></li>
+				  	<li class=""><a href="#replyMe" data-toggle="tab" aria-expanded="false" id="rm">回复我的</a></li>
+				</ul>
+				<div id="myTabContent" class="tab-content">
+					<div class="tab-pane fade active in" id="myReply">
+				    	<div class="list-group" id="myReplyList">
+						</div>
+				  	</div>
+				  	<div class="tab-pane fade" id="replyMe">
+				    	<div class="list-group" id="replyMeList">
+						</div>
+				  	</div>
+				</div>
+			</div>
+		</div>
+   		<script th:src="@{/js/jquery.min.js}"></script>
+		<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+		<script th:src="@{/vendor/paginator/js/bootstrap-paginator.min.js}"></script>
+		<script th:src="@{/js/common.js}"></script>
+		<script th:src="@{/js/reply.js}"></script>
+   	</body>
+</html>

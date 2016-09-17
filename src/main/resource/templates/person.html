@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>自由生活</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	    <link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}" />
+   		<link rel="stylesheet" type="text/css" th:href="@{/css/person.css}" />
+	</head>
+	<body>
+		<div th:include="common/header :: header(user=${session.user_resource})"></div>
+		<div class="container">
+			<div class="left-content col-lg-4">
+				<div class="panel panel-default">
+					<div class="panel-body"><h4>个人中心</h4></div>
+					<div class="text-center"><img th:src="${session.user.avatar}" onerror="this.src='/images/person/user_.png'" width="89px" height="89px" /></div>
+					<div class="text-center"><h6><span th:text="${session.user.nickname}"></span></h6></div>
+					<div class="text-center"><h6><span th:style="'color'+${session.user.grade_Color}" th:text="${session.user.grade_Name}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span th:text="${session.user.bonus_point}"></span>&nbsp;积分</h6></div>
+					<hr/>
+					<div class="row op-area">
+						<div class="text-center col-lg-6"><h5>评论数</h5><h5><span th:text="${session.user.comment_Num == '' ? '0' : session.user.comment_Num}"></span></h5><a class="btn btn-primary btn-block" href="#" role="button" id="eidtProfile"><img src="/images/person/personprofile.png"/>&nbsp;&nbsp;&nbsp;&nbsp;编辑资料</a></div>
+						<div class="text-center col-lg-6"><h5>回复数</h5><h5><span th:text="${session.user.reply_Num == '' ? '0' : session.user.reply_Num}"></span></h5><a class="btn btn-primary btn-block" href="#" role="button" id="chgPass"><img src="/images/person/modifypw.png"/>&nbsp;&nbsp;&nbsp;&nbsp;修改密码</a></div>
+					</div>
+					<div class="text-center left-menu">
+						<ul class="nav nav-pills nav-stacked">
+	      					<li class="active"><a href="javascript:void(0)" data-url="/person/profit"><img th:src="@{/images/person/profit_.png}"/>&nbsp;&nbsp;&nbsp;&nbsp;我的收益</a></li>
+							<li><a href="javascript:void(0)" data-url="/person/remark"><img th:src="@{/images/person/remark_.png}"/>&nbsp;&nbsp;&nbsp;&nbsp;我的点评</a></li>
+						 	<li><a href="javascript:void(0)" data-url="/person/reply"><img th:src="@{/images/person/reply_.png}"/>&nbsp;&nbsp;&nbsp;&nbsp;我的回复</a></li>
+						 	<li><a href="javascript:void(0)" data-url="/person/profile"><img th:src="@{/images/person/profile_.png}"/>&nbsp;&nbsp;&nbsp;&nbsp;个人资料</a></li>
+						 	<li><a href="javascript:void(0)" data-url="/person/sysmsg"><img th:src="@{/images/person/sysmsg_.png}"/>&nbsp;&nbsp;&nbsp;&nbsp;系统消息</a></li>
+						 	<li><a href="javascript:void(0)" data-url="/person/auth"><img th:src="@{/images/person/auth_.png}"/>&nbsp;&nbsp;&nbsp;&nbsp;身份认证</a></li>
+						</ul>
+					</div>
+					<div class="center-block recent">
+						<ul class="nav nav-tabs">
+		  					<li class="active"><a aria-expanded="true" href="#come" data-toggle="tab">最近访问</a></li>
+		  					<li class="disabled"><a href="">|</a></li>
+		  					<li class=""><a aria-expanded="true" href="#go" data-toggle="tab">最近来访</a></li>
+		  				</ul>
+		  				<div id="viewTabContent" class="tab-content">
+					  		<div class="tab-pane fade active in" id="come">
+					  			<p></p>
+					    		<p class="inline"><img src="/images/person/user.png" />&nbsp;&nbsp;&nbsp;&nbsp;<span>XXX&nbsp;&nbsp;&nbsp;&nbsp;公爵</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>2016-07-09</span></p>
+					    		<p class="inline"><img src="/images/person/user.png" />&nbsp;&nbsp;&nbsp;&nbsp;<span>XXX&nbsp;&nbsp;&nbsp;&nbsp;公爵</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>2016-07-09</span></p>
+					    		<p class="inline"><img src="/images/person/user.png" />&nbsp;&nbsp;&nbsp;&nbsp;<span>XXX&nbsp;&nbsp;&nbsp;&nbsp;公爵</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>2016-07-09</span></p>
+					    		<p class="inline"><img src="/images/person/user.png" />&nbsp;&nbsp;&nbsp;&nbsp;<span>XXX&nbsp;&nbsp;&nbsp;&nbsp;公爵</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>2016-07-09</span></p>
+					    		<p class="inline"><img src="/images/person/user.png" />&nbsp;&nbsp;&nbsp;&nbsp;<span>XXX&nbsp;&nbsp;&nbsp;&nbsp;公爵</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>2016-07-09</span></p>
+					  		</div>
+	  						<div class="tab-pane fade" id="go">
+	    						<p></p>
+					    		<p class="inline"><img src="/images/person/user.png" />&nbsp;&nbsp;&nbsp;&nbsp;<span>XXX&nbsp;&nbsp;&nbsp;&nbsp;公爵</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>2016-07-09</span></p>
+					    		<p class="inline"><img src="/images/person/user.png" />&nbsp;&nbsp;&nbsp;&nbsp;<span>XXX&nbsp;&nbsp;&nbsp;&nbsp;公爵</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>2016-07-09</span></p>
+					    		<p class="inline"><img src="/images/person/user.png" />&nbsp;&nbsp;&nbsp;&nbsp;<span>XXX&nbsp;&nbsp;&nbsp;&nbsp;公爵</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>2016-07-09</span></p>
+					    		<p class="inline"><img src="/images/person/user.png" />&nbsp;&nbsp;&nbsp;&nbsp;<span>XXX&nbsp;&nbsp;&nbsp;&nbsp;公爵</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>2016-07-09</span></p>
+					    		<p class="inline"><img src="/images/person/user.png" />&nbsp;&nbsp;&nbsp;&nbsp;<span>XXX&nbsp;&nbsp;&nbsp;&nbsp;公爵</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>2016-07-09</span></p>
+	  						</div>
+						</div>
+	  				</div>
+				</div>
+			</div>
+			<div class="right-content col-lg-8">
+				
+			</div>
+		</div>
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
+			   aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+		   <div class="modal-dialog">
+		      <div class="modal-content">
+		      	<div class="modal-header">
+		            <legend>
+						<span>用户密码修改</span>
+					</legend>
+		         </div>
+		         <div class="modal-body">
+		         	<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<label for="o_password" class="col-sm-4 control-label">原密码</label>
+							<div class="col-sm-8">
+								<input type="password" name="o_password" id="o_password" class="form-control" placeholder="请输入旧密码" required="required" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="n_password" class="col-sm-4 control-label">新密码</label>
+							<div class="col-sm-8">
+								<input type="password" name="n_password" id="n_password" class="form-control" placeholder="设置新密码" required="required" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="n_password_" class="col-sm-4 control-label">再次确认新密码</label>
+							<div class="col-sm-8">
+								<input type="password" name="n_password_" id="n_password_" class="form-control" placeholder="确认新密码" required="required" />
+							</div>
+						</div>
+  					</form>
+		         </div>
+		         <div class="modal-footer">
+		            <button type="button" class="btn btn-default" data-dismiss="modal">取消关闭</button>
+		            <button type="button" id="updPass" class="btn btn-primary">确认修改</button>
+		         </div>
+		      </div><!-- /.modal-content -->
+		  </div><!-- /.modal -->
+        </div><!-- content --> 
+		<div class="col-lg-offset-10 navbar-fixed-bottom">
+			<div th:include="common/side :: side"></div>
+		</div>
+		<div th:include="common/footer :: footer"></div>
+		<div class="modal fade" id="feedModal" tabindex="-1" role="dialog" 
+			   aria-labelledby="feedModalLabel" aria-hidden="true" data-backdrop="static">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+		            	<legend>
+							<span>用户反馈</span>
+						</legend>
+		         	</div>
+		         	<div class="modal-body">
+		         		<form class="form-horizontal" role="form">
+							<div class="form-group">
+								<label for="content" class="col-sm-2 control-label">反馈内容</label>
+								<div class="col-sm-8">
+									<textarea class="form-control" name="content" rows="3" placeholder="欢迎您提出在使用中遇到的问题或宝贵建议，感谢您的支持。"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="contact" class="col-sm-2 control-label">联系方式</label>
+								<div class="col-sm-8">
+									<input type="text" name="contact" class="form-control" placeholder="留下您的联系方式，便于我们及时回复您。" required="required" />
+								</div>
+							</div>
+	 					</form>
+		         	</div>
+					<div class="modal-footer">
+			            <button type="button" id="submit" class="btn btn-primary">提交反馈</button>
+			         </div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal -->
+		</div><!-- content -->
+		<script th:src="@{/js/jquery.min.js}"></script>
+		<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+		<script th:src="@{/js/common.js}"></script>
+		<script th:src="@{/js/person.js}"></script>
+	</body>
+</html>
